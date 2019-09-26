@@ -6,32 +6,40 @@
  * */
 
 #include<iostream>
-#include<string>
-#include<sstream>
+#include<vector>
 
 using namespace std;
 
-string modifyString(string&, int);
+vector<char> modifyString(string&, int);
 
 int main()
 {
-	int str_size;
+	int str_size, length, i = 0;
 	string input;
 	cout<<"enter the string"<<endl;
 	getline(cin, input);
-		
-	string modified_str = modifyString(input, input.size());
-	cout<<modified_str<<endl;
+	
+	cin>>length;
+	vector<char> modified_str = modifyString(input, length);
+	for(auto iter = modified_str.begin() ; iter != modified_str.end() ; ++iter) {
+		cout<<*iter;
+	}
+	cout<<endl;
 	return 0;
 }
 
-string modifyString(string &str, int size)
+vector<char> modifyString(string &str, int size)
 {
+	vector<char> svec;
 	for(int i = 0 ; i < size ; i++) {
 		if(str[i] == ' ') {
-			str[i] = '#';
+			svec.push_back('%');
+			svec.push_back('2');
+			svec.push_back('0');
+		} else {
+			svec.push_back(str[i]);
 		}
 	}
-	return str;
+	return(svec);
 }
 
